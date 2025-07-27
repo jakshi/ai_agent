@@ -2,10 +2,26 @@ import os
 import sys
 from pathlib import Path
 
+from google.genai import types
+
 # Add the parent directory to Python path so we can import config
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import MAX_FILE_READ_BYTES
+
+schema_get_file_content = types.FunctionDeclaration(
+    name="get_file_content",
+    description="Read file content in the specified directory, constrained to the working directory, if file size more than 10000 bytes, file will be truncated with a message in the end of the file.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="file name to load content from, inside the working directory. file_path is mandatory. If not provided, cause an error.",
+            ),
+        },
+    ),
+)
 
 
 def get_file_content(working_directory, file_path):
