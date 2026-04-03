@@ -75,11 +75,14 @@ def call_function(function_call_part, verbose=False):
 def main():
     # Set up command line argument parsing
     parser = argparse.ArgumentParser(description="Generate content using Gemini AI")
-    parser.add_argument("prompt", help="The prompt to send to the AI model")
+    parser.add_argument(
+        "prompt",
+        help="The prompt to send to the AI model",
+    )
     parser.add_argument(
         "--model",
-        default="gemini-2.0-flash",
-        help="Model to use (default: gemini-2.0-flash)",
+        default="gemini-3-flash-preview",
+        help="Model to use (default: gemini-3-flash-preview)",
     )
     parser.add_argument(
         "--verbose",
